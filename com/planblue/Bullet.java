@@ -12,8 +12,7 @@ class Bullet extends Sprite {
     @Override
     void move( int dx, int dy ){
         super.move( dx, dy );
-        // check if it's out of the canvas
-        if( y + height <= 0 ){
+        if( outOfCanvas()){
             visible = false;
         }
     }

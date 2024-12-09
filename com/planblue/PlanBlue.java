@@ -25,6 +25,9 @@ class PlanBlue extends JFrame {
         ImageCache.put( "red_plane" );
         ImageCache.put( "blue_bullet" );
         ImageCache.put( "red_bullet" );
+        ImageCache.put( "boss" );
+        ImageCache.put( "enemy_plane1" );
+        ImageCache.put( "enemy_plane2" );
     }
     ////////////////////////////////////////////////////////////
     Select select;
@@ -33,16 +36,22 @@ class PlanBlue extends JFrame {
         setDefaultCloseOperation( EXIT_ON_CLOSE );
         setSize( WIDTH, HEIGHT );
         getContentPane().setBackground( new Color( 0x888888 ));
-        var builder = new Select.Builder();
-        builder.setTitle( "Select plane" );
-        builder.setParent( this );
-        select = builder.create();
-        //
-        var menuBar = new MenuBar( this );
-        var popupMenu = new PopupMenu( this );
-        menuBar.create();
-        popupMenu.create();
-        //
+        if( false ){
+            var builder = new Select.Builder();
+            builder.setTitle( "Select plane" );
+            builder.setParent( this );
+            select = builder.create();
+            //
+            var menuBar = new MenuBar( this );
+            var popupMenu = new PopupMenu( this );
+            menuBar.create();
+            popupMenu.create();
+            //
+        } else {
+            var canvas = new EnemyCanvas();
+            add( canvas );
+            canvas.requestFocus();
+        }
         setVisible( true );
     }
     public static void main( String[] args ){
@@ -171,7 +180,7 @@ class PopupMenu extends MenuContainer {
 ////////////////////////////////////////////////////////////////
 // Fri 6  - Decorator                                          V
 // Sat 7  - Composite                                          V
-// Sun 8  - Chain
+// Sun 8  - Chain                                              V
 // Mon 9  - Observer
 // Tue 10 - Mediator
 // Wed 11 - State

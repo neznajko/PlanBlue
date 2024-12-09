@@ -32,6 +32,11 @@ abstract class Sprite {
         x += dx;
         y += dy;
     }
+    boolean outOfCanvas() {
+        if( y + height <= 0 )      return true;
+        if( y >= PlanBlue.HEIGHT ) return true;
+        return false;
+    }
 }
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
