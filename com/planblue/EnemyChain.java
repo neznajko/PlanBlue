@@ -32,32 +32,58 @@ class ChainNode {
 }
 ////////////////////////////////////////////////////////////////
 class EnemyChain {
+    static final String [] PLANENAMES = {
+        "enemy_plane1",
+        "enemy_plane2",
+        "boss"
+    };
     LinkedList <ChainNode> enemyChain;
     List <EnemyPlane> enemyPlanes;
-    volatile int timeline = 45;
+    int timeline;
+    int timenext;
+    int generateTimeInterval() {
+        return ChainNode.randInt( 10, 50 );
+    }
+    ChainNode generateEnemyPlane() {
+        int j = ChainNode.randInt( 0, PLANENAMES.length - 1 );
+        return new ChainNode( 1, PLANENAMES[ j ]);
+    }
     EnemyChain() {
         enemyChain = new LinkedList <> ();
         enemyPlanes = new ArrayList <> ();
+        timeline = 0;
+        timenext = generateTimeInterval();
     }
     void add( ChainNode chainNode ){
         enemyChain.add( chainNode );
     }
     void move( Graphics g ){
-        if( enemyChain.size() > 0 && 
-            timeline > 0 && timeline % 15 == 0 ){
+        if( enemyChain.size() > 0 && timeline == timenext ){
             var chainNode = enemyChain.poll();
             enemyPlanes.addAll( chainNode.create());
+            timenext = timeline + generateTimeInterval();
+            enemyChain.add( generateEnemyPlane());
         }
         for( EnemyPlane enemyPlane: enemyPlanes ){
             if( enemyPlane.visible ){
                 enemyPlane.draw( g );
-                enemyPlane.move( 0, 5 );
+                enemyPlane.move( 0, 2 );
                 if( enemyPlane.outOfCanvas()){
                     enemyPlane.visible = false;
                 }
             }
         }
-        --timeline;
+        ++timeline;
+    }
+    EnemyPlane collidingPlane( Sprite sprite ){
+        for( EnemyPlane enemyPlane: enemyPlanes ){
+            if( enemyPlane.visible ){
+                if( enemyPlane.collideWith( sprite )){
+                    return enemyPlane;
+                }
+            }
+        }
+        return null;
     }
 }
 ////////////////////////////////////////////////////////////////

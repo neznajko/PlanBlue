@@ -31,6 +31,11 @@ class Plane extends Sprite {
         super.draw( g );
         bullet.draw( g );
     }
+    void reset() {
+        x = ( PlanBlue.WIDTH - width )/ 2;
+        y = PlanBlue.HEIGHT - height * 3 / 2;
+        visible = true;
+    }
     static Plane factory( int x, int y, String name ){
         if( name == "blue_plane" ){
             return new Plane( x, y, name, "red_bullet" );

@@ -28,6 +28,10 @@ class PlanBlue extends JFrame {
         ImageCache.put( "boss" );
         ImageCache.put( "enemy_plane1" );
         ImageCache.put( "enemy_plane2" );
+        ImageCache.put( "blue_plane_small" );
+        ImageCache.put( "bom" );
+        ImageCache.put( "map" );
+        ImageCache.put( "map2" );
     }
     ////////////////////////////////////////////////////////////
     Select select;
@@ -36,7 +40,7 @@ class PlanBlue extends JFrame {
         setDefaultCloseOperation( EXIT_ON_CLOSE );
         setSize( WIDTH, HEIGHT );
         getContentPane().setBackground( new Color( 0x888888 ));
-        if( false ){
+        if( true ){
             var builder = new Select.Builder();
             builder.setTitle( "Select plane" );
             builder.setParent( this );
@@ -44,7 +48,7 @@ class PlanBlue extends JFrame {
             //
             var menuBar = new MenuBar( this );
             var popupMenu = new PopupMenu( this );
-            menuBar.create();
+            // menuBar.create();
             popupMenu.create();
             //
         } else {
@@ -181,7 +185,7 @@ class PopupMenu extends MenuContainer {
 // Fri 6  - Decorator                                          V
 // Sat 7  - Composite                                          V
 // Sun 8  - Chain                                              V
-// Mon 9  - Observer
-// Tue 10 - Mediator
+// Mon 9  - Observer                                           V
+// Tue 10 - Mediator                                           V
 // Wed 11 - State
 // Thu 12 - Finish

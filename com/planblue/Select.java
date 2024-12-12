@@ -25,6 +25,7 @@ class Select extends JDialog {
             dispose();
             canvas = new Canvas( name ); 
             parent.add( canvas );
+            parent.pack();
             parent.setVisible( true );
             canvas.requestFocus();
         });

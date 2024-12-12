@@ -37,6 +37,23 @@ abstract class Sprite {
         if( y >= PlanBlue.HEIGHT ) return true;
         return false;
     }
+    int cx() {
+        return x + width/ 2;
+    }
+    int cy() {
+        return y + height/ 2;
+    }
+    boolean collideWith( Sprite sprite ){
+        if(!( visible && sprite.visible )) return false;
+        int distx = Math.abs( cx() - sprite.cx());
+        int disty = Math.abs( cy() - sprite.cy());
+        if( distx < ( width  + sprite.width  )/ 2 &&
+            disty < ( height + sprite.height )/ 2 ){
+            return true;
+        }
+        return false;
+    }
+
 }
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
