@@ -58,7 +58,7 @@ class MakeSound { // StackOverflow
             }
             if( nBytesRead >= 0 ){
                 @SuppressWarnings( "unused ")
-                int _ = sourceLine.write( abData, 0, nBytesRead );
+                int __ = sourceLine.write( abData, 0, nBytesRead );
             }
         }
         sourceLine.drain();
